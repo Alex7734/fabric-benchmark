@@ -1,0 +1,15 @@
+# General
+.yarn/
+.vscode/
+.DS_Store
+node_modules/
+dist/
+
+# React Native Apps
+
+FabricEnabled/
+FabricDisabled/
+
+# Videos
+
+videos/

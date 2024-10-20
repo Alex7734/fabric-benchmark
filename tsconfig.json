@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "module": "NodeNext",                
+    "target": "ES2020",               
+    "strict": true,
+    "esModuleInterop": true,           
+    "skipLibCheck": true,
+    "moduleResolution": "nodenext", 
+    "resolveJsonModule": true        
+  },
+  "include": ["performance/**/*.ts", "android_performance_utils/**/*.ts", "appium_utils/**/*.ts", "types/**/*.ts", "constants/**/*.ts"],
+}
