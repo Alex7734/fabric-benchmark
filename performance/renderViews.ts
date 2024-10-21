@@ -3,7 +3,8 @@ import { getBundleId, getDriverOptions } from '../appium_utils/driverSetup';
 import { getAndroidCpuAndMemoryUsageForApp } from '../android_performance_utils/cpu_usage';
 import { startScreenRecording, stopScreenRecording } from '../appium_utils/videoUtils';
 import { executeGenericPollingPerformance } from '../appium_utils/executeGenericPollingPerformance';
-import { FIVE_SECONDS_MS, THREE_SECONDS_MS, TWENTY_SECONDS_MS } from '../constants/durations';
+import { FIVE_SECONDS_MS, ONE_SECOND_MS, THREE_SECONDS_MS, TWENTY_SECONDS_MS } from '../constants/durations';
+import { getAndroidFpsForApp } from '../android_performance_utils/fps_calculation';
 
 const IS_FABRIC_ENABLED = process.env.NEW_ARCH === "true";
 const TEST_DURATION = TWENTY_SECONDS_MS + THREE_SECONDS_MS;
@@ -22,6 +23,7 @@ const runPerformanceTest = async () => {
     bundleId,
   }
   
+  executeGenericPollingPerformance(getAndroidFpsForApp, /* args */ { appState }, /* interval */ ONE_SECOND_MS, TEST_DURATION);
   await executeGenericPollingPerformance(getAndroidCpuAndMemoryUsageForApp, /* args */ { appState }, /* interval */ FIVE_SECONDS_MS, TEST_DURATION);
   await stopScreenRecording(driver, /* fileName */ 'test');
 };

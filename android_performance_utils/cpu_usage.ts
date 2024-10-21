@@ -28,8 +28,6 @@ export const getAndroidCpuAndMemoryUsageForApp = async ({
         } else {
             console.log(`CPU Usage: ${cpuUsage} \nMemory Usage: ${memoryUsage}`);
         }
-
-        return {...appState, memoryUsage, cpuUsage};
     });
 };
 
