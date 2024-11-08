@@ -1,5 +1,5 @@
 import React from 'react';
-import {Dimensions, ScrollView, StyleSheet, Text, View} from 'react-native';
+import {Dimensions, ScrollView, StyleSheet, View} from 'react-native';
 
 const styles = StyleSheet.create({
   container: {flexDirection: 'row', flexWrap: 'wrap'},
