@@ -1,6 +1,7 @@
 import { GenericAndroidAppModel } from "../types/app-model";
 import { exec } from 'child_process';
 import * as fs from 'fs';
+import * as path from 'path';
 
 export type GetAndroidFpsForAppParams = {
     appState: GenericAndroidAppModel;
@@ -47,9 +48,18 @@ function calculateFps(framestats: string): number {
 }
 
 
-// TODO: See if we can make a higher order function to handle writing to file
-function writeToFile(dumpFile: string,fps: number) {
-    fs.writeFileSync(dumpFile, `FPS: ${fps}`, {
-        encoding: 'utf-8',
-    });
+function writeToFile(dumpFile: string, fps: number) {
+    const timestamp = new Date().toISOString();
+    const dataLine = `${timestamp},${fps}\n`;
+    const dir = path.dirname(dumpFile);
+
+    if (!fs.existsSync(dir)) {
+        fs.mkdirSync(dir, { recursive: true });
+    }
+
+    if (!fs.existsSync(dumpFile)) {
+        fs.writeFileSync(dumpFile, 'Timestamp,FPS\n', { encoding: 'utf-8' });
+    }
+
+    fs.appendFileSync(dumpFile, dataLine, { encoding: 'utf-8' });
 }

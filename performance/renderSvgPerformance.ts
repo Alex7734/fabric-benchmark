@@ -5,7 +5,9 @@ import { startScreenRecording, stopScreenRecording } from '../appium_utils/video
 import { executeGenericPollingPerformance } from '../appium_utils/executeGenericPollingPerformance';
 import { FIVE_SECONDS_MS, ONE_SECOND_MS, THREE_SECONDS_MS, TWENTY_SECONDS_MS } from '../constants/durations';
 import { getAndroidFpsForApp } from '../android_performance_utils/fps_calculation';
+import { getCpuMemoryDumpFileForTestName, getFpsDumpFileForTestName } from '../appium_utils/dumpfileUtils';
 
+const TEST_NAME = 'render_svg_performance_test';
 const IS_FABRIC_ENABLED = process.env.NEW_ARCH === "true";
 const TEST_DURATION = TWENTY_SECONDS_MS + THREE_SECONDS_MS;
 
@@ -22,16 +24,29 @@ const renderSvgPerformance = async () => {
   const appState: GenericAndroidAppModel = {
     bundleId,
   };
+  
+  const cpuAndMemoryDumpfile = getCpuMemoryDumpFileForTestName(TEST_NAME, IS_FABRIC_ENABLED);
+  const fpsDumpfile = getFpsDumpFileForTestName(TEST_NAME, IS_FABRIC_ENABLED);
 
-  executeGenericPollingPerformance(getAndroidFpsForApp, { appState }, ONE_SECOND_MS, TEST_DURATION);
-  executeGenericPollingPerformance(getAndroidCpuAndMemoryUsageForApp, { appState }, FIVE_SECONDS_MS, TEST_DURATION);
+  executeGenericPollingPerformance(
+    getAndroidFpsForApp,
+    { appState, dumpFile: fpsDumpfile },
+    ONE_SECOND_MS,
+    TEST_DURATION
+  );
 
+  executeGenericPollingPerformance(
+    getAndroidCpuAndMemoryUsageForApp,
+    { appState, dumpFile: cpuAndMemoryDumpfile },
+    FIVE_SECONDS_MS,
+    TEST_DURATION
+  );
   const showButton = await driver.$('~SHOW'); 
   await showButton.click();
 
   await driver.pause(TWENTY_SECONDS_MS);
 
-  await stopScreenRecording(driver, 'render_svg_performance_test');
+  await stopScreenRecording(driver, TEST_NAME);
 };
 
 renderSvgPerformance().catch(console.error);

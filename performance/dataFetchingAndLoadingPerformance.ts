@@ -6,7 +6,9 @@ import { executeGenericPollingPerformance } from '../appium_utils/executeGeneric
 import { FIVE_SECONDS_MS, ONE_SECOND_MS, TWENTY_SECONDS_MS, THREE_SECONDS_MS } from '../constants/durations';
 import { getAndroidFpsForApp } from '../android_performance_utils/fps_calculation';
 import { performSwipe } from '../appium_utils/perfromSwipe';
+import { getCpuMemoryDumpFileForTestName, getFpsDumpFileForTestName } from '../appium_utils/dumpfileUtils';
 
+const TEST_NAME = 'data_fetching_and_loading_with_scrolling_performance_test';
 const IS_FABRIC_ENABLED = process.env.NEW_ARCH === "true";
 const TEST_DURATION = TWENTY_SECONDS_MS + THREE_SECONDS_MS;
 const BUTTON_ACCESSIBILITY_ID = "SHOW_TWEETS_BUTTON";
@@ -30,16 +32,30 @@ const runDataFetchingAndLoadingPerformanceTest = async () => {
     bundleId,
   };
 
-  executeGenericPollingPerformance(getAndroidFpsForApp, { appState }, ONE_SECOND_MS, TEST_DURATION);
-  executeGenericPollingPerformance(getAndroidCpuAndMemoryUsageForApp, { appState }, FIVE_SECONDS_MS, TEST_DURATION);
+  const cpuAndMemoryDumpfile = getCpuMemoryDumpFileForTestName(TEST_NAME, IS_FABRIC_ENABLED);
+  const fpsDumpfile = getFpsDumpFileForTestName(TEST_NAME, IS_FABRIC_ENABLED);
 
+  executeGenericPollingPerformance(
+    getAndroidFpsForApp,
+    { appState, dumpFile: fpsDumpfile },
+    ONE_SECOND_MS,
+    TEST_DURATION
+  );
+
+  executeGenericPollingPerformance(
+    getAndroidCpuAndMemoryUsageForApp,
+    { appState, dumpFile: cpuAndMemoryDumpfile },
+    FIVE_SECONDS_MS,
+    TEST_DURATION
+  );
+  
   const showTweetsButton = await driver.$(`~${BUTTON_ACCESSIBILITY_ID}`);
   await showTweetsButton.click();
 
   await driver.pause(ONE_SECOND_MS * 8);
   await performSwipe(driver, 10, screenMidX, screenStartY, screenEndY, pauseDuration);
 
-  await stopScreenRecording(driver, 'data_fetching_and_loading_with_scrolling_performance_test');
+  await stopScreenRecording(driver, TEST_NAME);
   await driver.releaseActions();
 };
 

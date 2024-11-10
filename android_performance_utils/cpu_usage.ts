@@ -1,6 +1,7 @@
 import { GenericAndroidAppModel } from "../types/app-model";
 import { exec } from 'child_process';
 import * as fs from 'fs';
+import * as path from 'path';
 
 export type GetAndroidCpuUsageForAppParams = {
     appState: GenericAndroidAppModel;
@@ -37,9 +38,19 @@ enum UsageArrayIndex {
 }
 
 function writeToFile(dumpFile: string, cpuUsage: string, memUsage: string) {
-    fs.writeFileSync(dumpFile, `${cpuUsage} ${memUsage}`, {
-        encoding: 'utf-8',
-    });
+    const timestamp = new Date().toISOString();
+    const dataLine = `${timestamp},${cpuUsage},${memUsage}\n`;
+    const dir = path.dirname(dumpFile);
+
+    if (!fs.existsSync(dir)) {
+        fs.mkdirSync(dir, { recursive: true });
+    }
+
+    if (!fs.existsSync(dumpFile)) {
+        fs.writeFileSync(dumpFile, 'Timestamp,CPU Usage,Memory Usage\n', { encoding: 'utf-8' });
+    }
+
+    fs.appendFileSync(dumpFile, dataLine, { encoding: 'utf-8' });
 }
 
 function parseCpuUsage(usageArray: string[]): string {
