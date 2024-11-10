@@ -8,8 +8,9 @@ import { ONE_SECOND_MS } from "../constants/durations";
  * @param {number} startX - The starting x-coordinate for the swipe.
  * @param {number} startY - The starting y-coordinate for the swipe.
  * @param {number} endY - The ending y-coordinate for the swipe.
+ * @parma {number} pauseDuration - The duration to pause after each swipe.
  */
-const performSwipe = async (driver: any, repetitions: number, startX: number, startY: number, endY: number) => {
+const performSwipe = async (driver: any, repetitions: number, startX: number, startY: number, endY: number, pauseDuration?: number) => {
     for (let i = 0; i < repetitions; i++) {
       await driver.performActions([
         {
@@ -24,7 +25,7 @@ const performSwipe = async (driver: any, repetitions: number, startX: number, st
           ]
         }
       ]);
-      await driver.pause(ONE_SECOND_MS);
+      await driver.pause(pauseDuration ?? ONE_SECOND_MS);
     }
     await driver.releaseActions();
   };
