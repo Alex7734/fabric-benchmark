@@ -19,7 +19,7 @@ The scenarios are located in the `scenarios` folder. Each scenario has a separat
 - Paste it in the `App.tsx` file from the `src` folder both in the `FabricEnabled` and `FabricDisabled` folders, these are the two React Native projects that we will use to test the scenarios.
 - Run the scenario performance test as described below.
 
-1. In one terminal, run `npx appium`
+1. In one terminal, run `npx appium --base-path /wd/hub`
 2. In another run `NEW_ARCH=false npx ts-node performance/{scenarioName}.ts`
 3. Then run `NEW_ARCH=true npx ts-node performance/{scenarioName}.ts`
 

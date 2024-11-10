@@ -1,6 +1,6 @@
 import React from 'react';
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
-import {text} from './text';
+import {text} from './text'
 
 const styles = StyleSheet.create({
   container: {flexDirection: 'row', flexWrap: 'wrap'},

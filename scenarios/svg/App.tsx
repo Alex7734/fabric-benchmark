@@ -34,8 +34,8 @@ const App = () => {
   return (
     <>
       <ScrollView>
-        <Button title="SHOW" onPress={() => setShow(!show)} />
-        {show ? (
+      <Button title="SHOW" onPress={() => setShow(!show)} accessibilityLabel="SHOW" />
+      {show ? (
           <View style={styles.container}>
             {Array(100)
               .fill(null)
