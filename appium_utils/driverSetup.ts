@@ -7,7 +7,7 @@ export function getDriverOptions (bundleId: string) {
             platformName: 'android',
             'appium:deviceName': 'emulator-5554',
             'appium:appPackage': bundleId,
-            'appium:appActivity': 'com.fabricdisabled.MainActivity',
+            'appium:appActivity': `${bundleId}.MainActivity`,
             'appium:automationName': 'UiAutomator2',
             },
             firstMatch: [{}],

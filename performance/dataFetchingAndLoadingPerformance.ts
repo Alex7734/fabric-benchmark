@@ -16,7 +16,7 @@ const BUTTON_ACCESSIBILITY_ID = "SHOW_TWEETS_BUTTON";
 const screenMidX = 540; 
 const screenStartY = 1800;
 const screenEndY = 300; 
-const pauseDuration = 10;
+const pauseDuration = 500;
 
 const runDataFetchingAndLoadingPerformanceTest = async () => {
   const wdio = await import('webdriverio');
@@ -52,8 +52,8 @@ const runDataFetchingAndLoadingPerformanceTest = async () => {
   const showTweetsButton = await driver.$(`~${BUTTON_ACCESSIBILITY_ID}`);
   await showTweetsButton.click();
 
-  await driver.pause(ONE_SECOND_MS * 8);
-  await performSwipe(driver, 10, screenMidX, screenStartY, screenEndY, pauseDuration);
+  await driver.pause(ONE_SECOND_MS * 5);
+  await performSwipe(driver, 10, screenMidX, screenStartY, screenEndY, pauseDuration, /* fast swipe */ true);
 
   await stopScreenRecording(driver, TEST_NAME);
   await driver.releaseActions();
