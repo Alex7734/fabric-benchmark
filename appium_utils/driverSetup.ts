@@ -5,7 +5,9 @@ export function getDriverOptions (bundleId: string) {
         capabilities: {
             alwaysMatch: {
             platformName: 'android',
-            'appium:deviceName': 'emulator-5554',
+            // Fizic: SM-G991B - 13 
+            // Emulator: emulator-5554
+            'appium:deviceName': 'SM-G991B - 13', 
             'appium:appPackage': bundleId,
             'appium:appActivity': `${bundleId}.MainActivity`,
             'appium:automationName': 'UiAutomator2',
