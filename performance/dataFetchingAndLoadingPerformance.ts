@@ -43,22 +43,22 @@ const runDataFetchingAndLoadingPerformanceTest = async () => {
 
   executeGenericPollingPerformance(
     getAndroidFpsForApp,
-    { appState, dumpFile: fpsDumpfile },
+    { appState, dumpFile: undefined },
     ONE_SECOND_MS,
     TEST_DURATION
   );
 
   executeGenericPollingPerformance(
     getAndroidCpuAndMemoryUsageForApp,
-    { appState, dumpFile: cpuAndMemoryDumpfile },
+    { appState, dumpFile: undefined },
     FIVE_SECONDS_MS,
     TEST_DURATION
   );
   
-  const showTweetsButton = await driver.$(`~${BUTTON_ACCESSIBILITY_IDS.SHOW_TWEETS}`);
-  const backButton = await driver.$(`~${BUTTON_ACCESSIBILITY_IDS.BACK}`);
-  const cpuIntensiveButton = await driver.$(`~${BUTTON_ACCESSIBILITY_IDS.CPU_INTENSIVE}`);
-  const memoryIntensiveButton = await driver.$(`~${BUTTON_ACCESSIBILITY_IDS.MEMORY_INTENSIVE}`);
+  const showTweetsButton =  driver.$(`~${BUTTON_ACCESSIBILITY_IDS.SHOW_TWEETS}`);
+  const backButton =  driver.$(`~${BUTTON_ACCESSIBILITY_IDS.BACK}`);
+  const cpuIntensiveButton =  driver.$(`~${BUTTON_ACCESSIBILITY_IDS.CPU_INTENSIVE}`);
+  const memoryIntensiveButton =  driver.$(`~${BUTTON_ACCESSIBILITY_IDS.MEMORY_INTENSIVE}`);
 
   await showTweetsButton.click();
   await driver.pause(FIVE_SECONDS_MS);

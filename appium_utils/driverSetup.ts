@@ -20,3 +20,16 @@ export function getDriverOptions (bundleId: string) {
 export function getBundleId (fabricEnabled: boolean) {
     return `com.fabric${fabricEnabled ? "enabled" : "disabled"}`;
 }
+
+/**
+ * SM-G991B - 13 -> Samsung Galaxy S21
+ *
+ * 8 GB RAM
+ *
+ * CPU Octa-core (1x2.9 GHz Cortex-X1 & 3x2.8 GHz Cortex-A78 &
+ * 4x2.2 GHz Cortex-A55) with a Exynos 2100 chipset
+ *
+ * GPU
+ *
+ *
+ */

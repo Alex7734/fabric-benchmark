@@ -23,8 +23,7 @@ const runPerformanceTest = async () => {
 
   const appState: GenericAndroidAppModel = { bundleId };
 
-  const cpuAndMemoryDumpfile = getCpuMemoryDumpFileForTestName(TEST_NAME, IS_FABRIC_ENABLED);
-  const fpsDumpfile = getFpsDumpFileForTestName(TEST_NAME, IS_FABRIC_ENABLED);
+ getFpsDumpFileForTestName(TEST_NAME, IS_FABRIC_ENABLED);
 
   executeGenericPollingPerformance(
     getAndroidFpsForApp, 
