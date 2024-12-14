@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+
+    <aside class="sidebar">
+        <h2>Test Scenarios</h2>
+        <form method="get" action="/">
+            <label for="scenario" class="form-label">Select a Scenario:</label>
+            <select name="scenario" id="scenario" class="scenario-dropdown" onchange="this.form.submit()">
+                {% for key, scn in scenarios.items() %}
+                <option value="{{ key }}" {% if key == current_scenario_key %}selected{% endif %}>
+                    {{ scn.title }}
+                </option>
+                {% endfor %}
+            </select>
+
+            <br/><br/>
+            <h2>Device</h2>
+            <label for="device" class="form-label">Select a Device:</label>
+            <select name="device" id="device" class="device-dropdown" onchange="this.form.submit()">
+                {% for dev_key, dev_info in devices.items() %}
+                <option value="{{ dev_key }}" {% if dev_key == current_device_key %}selected{% endif %}>
+                    {{ dev_info.name }}
+                </option>
+                {% endfor %}
+            </select>
+        </form>
+
+        <h2>Device Info</h2>
+        <ul class="device-info">
+            <li><strong>Device:</strong> {{ device.name }}</li>
+            <li><strong>OS:</strong> {{ device.os }}</li>
+            <li><strong>RAM:</strong> {{ device.ram }}</li>
+            <li><strong>CPU:</strong> {{ device.cpu }}</li>
+            <li><strong>GPU:</strong> {{ device.gpu }}</li>
+        </ul>
+
+        <h2>Scenario Description</h2>
+        <p class="scenario-description">{{ scenario.description }}</p>
+
+        <h2>Video</h2>
+        <div class="video-container">
+            <video width="100%" controls>
+                <source src="{{ url_for('static', filename='videos/' + scenario.video) }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </aside>
+
+    <section class="main-content">
+        <h2 class="scenario-title">{{ scenario.title }}</h2>
+
+        <div class="chart-container">
+            <h3>CPU/Memory Usage ({{ device.name }})</h3>
+            <img src="{{ url_for('static', filename='images/' + cpu_memory_chart) }}"
+                 alt="CPU and Memory Comparison Chart" class="chart-image">
+        </div>
+        <div class="chart-container">
+            <h3>FPS Usage ({{ device.name }})</h3>
+            <img src="{{ url_for('static', filename='images/' + fps_chart) }}"
+                 alt="FPS Comparison Chart" class="chart-image">
+        </div>
+
+        <p class="scenario-notes">
+            The video on the left shows the actual app scenario being tested.
+            Observe how the app responds, loads data, and renders views. <br/>
+            The charts above provide a quantitative comparison between Fabric and the Old Architecture
+            in terms of CPU, Memory, and FPS performance. <br/>
+            The charts are based on the data collected from the app running on the selected device with E2E Appium tests
+            that simulate user interactions. All tests are hermetic and run on the same device with the same conditions.
+        </p>
+    </section>
+
+</div>
+{% endblock %}

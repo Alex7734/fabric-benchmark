@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>React Native Fabric Benchmark</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}"/>
+</head>
+<body>
+<header>
+    <nav class="navbar">
+        <h1><a href="/" class="navbar-title" >React Native Fabric Performance Benchmark</a></h1>
+        <ul>
+            <li><a href="/" {% if request.path == '/' %}class="active"{% endif %}>Benchmark</a></li>
+            <li><a href="{{ url_for('about') }}" {% if request.path == '/about' %}class="active"{% endif %}>About</a></li>
+            <li><a href="https://github.com/Alex7734/fabric-benchmark" target="_blank">Source Code</a></li>
+        </ul>
+    </nav>
+</header>
+<main class="main-container">
+    {% block content %}{% endblock %}
+</main>
+<footer>
+    <p>React Native Fabric Benchmarking &copy; 2024</p>
+    <p>Developed by <a href="https://www.linkedin.com/in/alexandru-mihoc-1956171a1/">Alexandru Mihoc</a></p>
+</footer>
+</body>
+</html>
+
+<style>
+    .navbar-title {
+        font-size: 1.5rem;
+        font-weight: bold;
+        text-decoration: none;
+        color: black;
+    }
+
+    .main-container {
+        margin-top: 32px;
+    }
+</style>

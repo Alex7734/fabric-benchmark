@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="about-page-container">
+    <div class="about-text-container">
+        <h2>About This Project</h2>
+        <p>
+            This project provides performance benchmarks for React Native applications, comparing the new Fabric architecture with the legacy architecture.
+        </p>
+        <p>
+            The aim is to identify performance improvements, bottlenecks, and areas that can be optimized for smoother rendering, better frame rates, and lower resource usage.
+        </p>
+        <p>
+            By presenting a series of test scenarios, we measure CPU, memory, and FPS usage under various conditions. The benchmarks help developers understand the impact of adopting Fabric and guide them towards building more performant React Native apps.
+        </p>
+    </div>
+
+    <div class="about-wrapper">
+        <div class="about-iframe-container">
+            <iframe
+                    src="https://docs.google.com/document/d/e/2PACX-1vR9U9oe_42H32rW2ZdWkg_HCMY7NZu1Dn7zENkrGJ4yi718AKA6Q9yzaKFwX7hAAA/pub?embedded=true"
+                    width="100%"
+                    height="100%"
+                    style="border:none;">
+            </iframe>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,276 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    background: #f8f8f8;
+}
+
+header, footer {
+    background: #f2f2f2;
+    padding: 1em;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.5em;
+    color: #333;
+}
+
+footer p {
+    margin: 0;
+    font-size: 0.9em;
+    color: #777;
+}
+
+/* Navbar */
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.navbar h1 {
+    font-size: 1.2em;
+    margin: 0;
+}
+
+.navbar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.navbar ul li {
+    display: inline;
+    margin: 0 0.5em;
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 1em;
+    padding: 0.5em 0.8em;
+    transition: color 0.3s;
+    border-radius: 4px;
+}
+
+.navbar ul li a:hover {
+    color: #000;
+}
+
+.navbar ul li a.active {
+    font-weight: bold;
+    color: #000;
+    background: none;
+}
+
+/* Main Page */
+
+.container {
+    display: flex;
+    flex-direction: row;
+    margin: 1em;
+    gap: 2em;
+}
+
+.sidebar {
+    flex: 1;
+    background: #ffffff;
+    padding: 1em;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    max-width: 280px;
+}
+
+.sidebar h2 {
+    margin-top: 0;
+    font-size: 1.2em;
+    color: #444;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 0.5em;
+}
+
+.scenario-dropdown {
+    width: 100%;
+    padding: 0.5em;
+    font-size: 0.9em;
+    margin: 0.5em 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background: #fafafa;
+    color: #333;
+}
+
+.device-info {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    line-height: 1.5em;
+    font-size: 0.9em;
+    margin-bottom: 1em;
+}
+
+.device-info li strong {
+    color: #555;
+}
+
+.scenario-description {
+    font-size: 0.9em;
+    line-height: 1.6em;
+    margin-bottom: 1em;
+}
+
+.chart-intro {
+    font-size: 0.9em;
+    margin-bottom: 0.5em;
+    color: #555;
+}
+
+.chart-container {
+    margin-bottom: 1.5em;
+    text-align: center;
+}
+
+.chart-container h3 {
+    font-size: 1em;
+    margin-bottom: 0.5em;
+    color: #444;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 0.3em;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.chart-image {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.main-content {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1em;
+}
+
+.scenario-title {
+    margin-top: 0;
+    font-size: 1.4em;
+    color: #333;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 0.5em;
+}
+
+.video-container {
+    margin-bottom: 1em;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    overflow: hidden;
+    background: #000;
+}
+
+.video-container video {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.scenario-notes {
+    font-size: 0.9em;
+    line-height: 1.6em;
+    color: #555;
+    margin-top: 1em;
+}
+
+.scenario-dropdown, .device-dropdown {
+    width: 100%;
+    padding: 0.5em;
+    font-size: 0.9em;
+    margin: 0.5em 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background: #fafafa;
+    color: #333;
+    appearance: none;
+    cursor: pointer;
+}
+
+.scenario-dropdown:hover, .device-dropdown:hover {
+    background: #f5f5f5;
+    border-color: #bbb;
+}
+
+.scenario-dropdown:focus, .device-dropdown:focus {
+    outline: none;
+    border-color: #999;
+}
+
+.scenario-dropdown option, .device-dropdown option {
+    background: #fff;
+    color: #333;
+    font-size: 0.9em;
+}
+
+/* About Page */
+
+.about-page-container {
+    display: flex;
+    width: 100%;
+    height: calc(100vh - 70px);
+    box-sizing: border-box;
+}
+
+.about-text-container {
+    width: 30%;
+    background: #f9f9f9;
+    padding: 1em;
+    padding-left: 2em;
+    padding-right: 2em;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+.about-text-container h2 {
+    margin-top: 0;
+    font-size: 1.4em;
+    color: #444;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 0.5em;
+    margin-bottom: 1em;
+}
+
+.about-text-container p {
+    font-size: 0.95em;
+    line-height: 1.6em;
+    color: #555;
+    margin-bottom: 1em;
+}
+
+.about-wrapper {
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.about-iframe-container {
+    width: 80%;
+    height: 80%;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #fff;
+    margin-bottom: 6em;
+}
